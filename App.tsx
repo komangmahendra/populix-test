@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Toast from 'react-native-toast-message';
 
+// screen
 import {HomeScreen} from './src/screen/Home';
 import {TabNav} from './src/components/TabNav';
 import {ListScreen} from './src/screen/List';
@@ -24,27 +26,30 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer theme={myTheme}>
-      <Tab.Navigator tabBar={props => <TabNav {...props} />}>
-        <Tab.Screen
-          name={SCREEN.MAIN_HOME}
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Home',
-            tabBarStyle: {display: 'none'},
-          }}
-        />
-        <Tab.Screen
-          name={SCREEN.MAIN_LIST}
-          component={ListScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'List',
-            tabBarStyle: {display: 'none'},
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer theme={myTheme}>
+        <Tab.Navigator tabBar={props => <TabNav {...props} />}>
+          <Tab.Screen
+            name={SCREEN.MAIN_HOME}
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+              tabBarLabel: 'Home',
+              tabBarStyle: {display: 'none'},
+            }}
+          />
+          <Tab.Screen
+            name={SCREEN.MAIN_LIST}
+            component={ListScreen}
+            options={{
+              headerShown: false,
+              tabBarLabel: 'List',
+              tabBarStyle: {display: 'none'},
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+      <Toast />
+    </>
   );
 }

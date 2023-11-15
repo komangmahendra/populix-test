@@ -27,7 +27,6 @@ export const getMovieListAsync = createAsyncThunk(
       const response = await MovieService.getMovieList();
       return response.data || {};
     } catch (err: any) {
-      console.log('ASASDASDASDSADSA');
       console.log(err.message);
     }
   },
@@ -36,9 +35,7 @@ export const getMovieListAsync = createAsyncThunk(
 export const getMovieByIdAsync = createAsyncThunk(
   discoverMovieKeys.fetchById,
   async (movieId: number) => {
-    console.log('MASUK SINI');
     const response = await MovieService.getMovieDetail(movieId);
-    console.log(response, 'HAHAHAHAHA');
     return response.data || {};
   },
 );

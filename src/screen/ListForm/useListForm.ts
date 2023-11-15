@@ -20,7 +20,6 @@ export const useListForm = () => {
   const {params, navigate} = useNavigation();
   const listDetail = useAppSelector(selectCollectionDetail);
   const {listId} = params as any;
-  console.log(params.listId, params, 'INI DIA');
 
   const [listForm, setListForm] = useState({
     name: listDetail?.name || '',
