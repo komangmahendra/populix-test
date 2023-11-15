@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useList} from './useList';
 import {Label} from '../../elements/Label';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -40,15 +40,7 @@ export const List = () => {
         renderItem={item => (
           <TouchableOpacity
             onPress={() => onNavigateListItemDetail(item.item.id)}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingHorizontal: 4,
-              paddingVertical: 10,
-              borderBottomColor: '#dbdbdb',
-              borderBottomWidth: 1,
-            }}>
+            style={styles.itemListContainer}>
             <View>
               <Label size="md">{item.item.name}</Label>
               <Text style={{fontSize: 12, color: '#696868'}}>
@@ -71,3 +63,15 @@ export const List = () => {
     </Layout>
   );
 };
+
+const styles = StyleSheet.create({
+  itemListContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 4,
+    paddingVertical: 10,
+    borderBottomColor: '#dbdbdb',
+    borderBottomWidth: 1,
+  },
+});
