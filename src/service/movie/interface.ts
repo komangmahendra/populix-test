@@ -1,15 +1,3 @@
-export type PayloadList = {
-  name: string;
-  description: string;
-  public: boolean;
-};
-
-export type ItemList = {
-  media_type: 'movie' | 'TV';
-  media_id: number;
-  comment?: string;
-};
-
 export type Filter = {
   page: number;
 };
@@ -56,4 +44,36 @@ export enum MovieGenreEnum {
 export type MovieGenre = {
   id: number;
   name: MovieGenreEnum;
+};
+
+export type MovieProductionCompany = {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
+};
+
+export type MovieDetail = {
+  adult: boolean;
+  backdrop_path: string | null;
+  budget: number;
+  genres: MovieGenre[];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  original_language: 'en';
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: MovieProductionCompany[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  status: string;
+  tagline: string;
+  title: string;
+  video: false;
+  vote_average: number;
+  vote_count: number;
 };

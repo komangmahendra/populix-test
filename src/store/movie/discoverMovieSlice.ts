@@ -4,31 +4,47 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {MovieService} from '../../service/movie/movieService';
 
 // types
-import {MovieType} from '../../service/movie/interface';
+import {MovieDetail, MovieType} from '../../service/movie/interface';
 import {RootState} from '..';
-import {discoverMovieKeys} from './discoverMovieKeys';
+import {discoverMovieKeys, discoverMoviePrefix} from './discoverMovieKeys';
 
-export interface CounterState {
+export interface DiscoverMovieState {
   movieList: MovieType[];
+  movieDetail: MovieDetail | null;
   status: 'idle' | 'loading' | 'failed';
 }
 
-const initialState: CounterState = {
+const initialState: DiscoverMovieState = {
   movieList: [],
+  movieDetail: null,
   status: 'idle',
 };
 
 export const getMovieListAsync = createAsyncThunk(
   discoverMovieKeys.fetchList,
   async () => {
-    const response = await MovieService.getMovieList();
-    console.log(response.data.results, 'INI DIA');
+    try {
+      const response = await MovieService.getMovieList();
+      return response.data || {};
+    } catch (err: any) {
+      console.log('ASASDASDASDSADSA');
+      console.log(err.message);
+    }
+  },
+);
+
+export const getMovieByIdAsync = createAsyncThunk(
+  discoverMovieKeys.fetchById,
+  async (movieId: number) => {
+    console.log('MASUK SINI');
+    const response = await MovieService.getMovieDetail(movieId);
+    console.log(response, 'HAHAHAHAHA');
     return response.data || {};
   },
 );
 
 export const discoverMovieSlice = createSlice({
-  name: 'discoverMovie',
+  name: discoverMoviePrefix,
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {},
@@ -45,11 +61,25 @@ export const discoverMovieSlice = createSlice({
       })
       .addCase(getMovieListAsync.rejected, state => {
         state.status = 'failed';
+      })
+      .addCase(getMovieByIdAsync.pending, state => {
+        state.status = 'loading';
+      })
+      .addCase(getMovieByIdAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.movieDetail = action.payload;
+      })
+      .addCase(getMovieByIdAsync.rejected, state => {
+        state.status = 'failed';
       });
   },
 });
 
 export const selectMovieList = (state: RootState) =>
   state.discoverMovie.movieList;
+export const selectMovieDetail = (state: RootState) =>
+  state.discoverMovie.movieDetail;
+export const selectMovieState = (state: RootState) =>
+  state.discoverMovie.status;
 
 export default discoverMovieSlice.reducer;
