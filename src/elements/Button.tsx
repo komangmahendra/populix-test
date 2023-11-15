@@ -1,14 +1,51 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {Pressable, PressableProps, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  PressableProps,
+  StyleSheet,
+} from 'react-native';
+import {Label} from './Label';
 
-// type ButtonType = 'primary' | 'secondary' | 'tertiary';
-// type Size = 'sm' | 'lg';
-type ButtonComponentProps = PressableProps & {title: string};
+type ButtonComponentProps = PressableProps & {
+  title: string;
+  loading?: boolean;
+  type?: 'danger' | 'secondary';
+};
 
-export const Button = ({...props}: ButtonComponentProps) => {
+export const Button = ({
+  style,
+  loading,
+  type,
+  ...props
+}: ButtonComponentProps) => {
+  const theme = useTheme();
+
+  const getBackgroundColor = () => {
+    if (type === 'danger') {
+      return '#FA7070';
+    }
+
+    return theme.colors.primary;
+  };
+
   return (
-    <Pressable {...props} style={styles.baseButton}>
-      <Text>{props.title}</Text>
+    <Pressable
+      {...props}
+      disabled={loading}
+      style={[
+        style,
+        styles.baseButton,
+        {backgroundColor: getBackgroundColor()},
+      ]}>
+      {loading ? (
+        <ActivityIndicator size={'small'} />
+      ) : (
+        <Label size="md" style={{color: '#fff'}}>
+          {props.title}
+        </Label>
+      )}
     </Pressable>
   );
 };
@@ -18,6 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 8,
+    borderRadius: 4,
   },
 });
 

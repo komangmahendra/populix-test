@@ -18,6 +18,6 @@ export const useNavigation = () => {
 
   return {
     navigate: onNavigate,
-    params,
+    params: (params || {}) as any,
   };
 };

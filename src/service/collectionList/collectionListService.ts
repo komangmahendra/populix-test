@@ -34,8 +34,8 @@ export class CollectionListService {
   };
 
   // item list
-  static addItemsToList = (listId: number) => {
-    return axios.post(`${this.baseURL}/4/list/${listId}/items`);
+  static addItemsToList = (listId: number, payload: {items: ItemList[]}) => {
+    return axios.post(`${this.baseURL}/4/list/${listId}/items`, payload);
   };
 
   static updateItemsToList = (listId: number, payload: {items: ItemList[]}) => {

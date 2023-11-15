@@ -1,5 +1,4 @@
 import {useEffect} from 'react';
-import {useRoute} from '@react-navigation/native';
 
 import {
   getMovieByIdAsync,
@@ -7,14 +6,26 @@ import {
   selectMovieState,
 } from '../../store/movie/discoverMovieSlice';
 import {useAppDispatch, useAppSelector} from '../../utils/hooks';
+import {useNavigation} from '../../utils/useNavigation';
+import {SCREEN} from '../../types/screen';
 
 export const useMovieDetail = () => {
   const dispatch = useAppDispatch();
-  const route = useRoute();
+  const {params, navigate} = useNavigation();
   const movieDetail = useAppSelector(selectMovieDetail);
   const movieState = useAppSelector(selectMovieState);
 
-  const {movieId} = route.params as any;
+  const {movieId, from} = params;
+
+  const onNavigateToList = () => {
+    navigate(SCREEN.MAIN_LIST, {
+      screen: SCREEN.LIST,
+      params: {
+        movieId,
+        from: SCREEN.MOVIE_DETAIL,
+      },
+    });
+  };
 
   useEffect(() => {
     dispatch(getMovieByIdAsync(movieId));
@@ -22,6 +33,8 @@ export const useMovieDetail = () => {
 
   return {
     movieDetail,
+    from,
     loading: movieState === 'loading',
+    onNavigateToList,
   };
 };

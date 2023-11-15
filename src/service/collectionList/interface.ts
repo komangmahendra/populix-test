@@ -3,7 +3,9 @@ import {MovieType} from '../movie/interface';
 export type PayloadList = {
   name: string;
   description: string;
-  public: boolean;
+  public?: boolean;
+  iso_3166_1: 'US';
+  iso_639_1: 'en';
 };
 
 export type ItemList = {

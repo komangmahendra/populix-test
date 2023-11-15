@@ -1,6 +1,8 @@
 import React from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Label} from '../elements/Label';
+import {SCREEN} from '../types/screen';
 
 export const TabNav = ({state, descriptors, navigation}: BottomTabBarProps) => {
   return (
@@ -24,7 +26,11 @@ export const TabNav = ({state, descriptors, navigation}: BottomTabBarProps) => {
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
+            if (route.name.includes(SCREEN.LIST)) {
+              navigation.navigate(SCREEN.MAIN_LIST, {screen: SCREEN.LIST});
+            } else {
+              navigation.navigate(SCREEN.MAIN_HOME, {screen: SCREEN.HOME});
+            }
           }
         };
 
@@ -45,9 +51,9 @@ export const TabNav = ({state, descriptors, navigation}: BottomTabBarProps) => {
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.container}>
-            <Text style={{color: isFocused ? '#673ab7' : '#222'}}>
+            <Label size="md" style={{color: isFocused ? '#673ab7' : '#222'}}>
               {label as string}
-            </Text>
+            </Label>
           </TouchableOpacity>
         );
       })}

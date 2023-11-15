@@ -60,6 +60,7 @@ export const collectionListSlice = createSlice({
       })
       .addCase(getCollectionByIdAsync.pending, state => {
         state.status = 'loading';
+        state.listDetail = null;
       })
       .addCase(getCollectionByIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
