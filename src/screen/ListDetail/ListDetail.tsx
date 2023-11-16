@@ -18,12 +18,11 @@ export const ListDetail = () => {
   const {
     listDetail,
     loading,
+    actionLoading,
     onNavigateToMovieDetail,
     onDeleteList,
     onNavigateToEditList,
   } = useListDetail();
-
-  console.log(loading);
 
   return (
     <Layout>
@@ -32,7 +31,7 @@ export const ListDetail = () => {
           <View style={{flexDirection: 'row'}}>
             <Button
               title="Delete"
-              loading={loading}
+              loading={loading || actionLoading}
               type="danger"
               onPress={() =>
                 Alert.alert(`Delete list ${listDetail?.name}`, '', [
@@ -50,6 +49,7 @@ export const ListDetail = () => {
             />
             <Button
               title="Edit"
+              loading={actionLoading}
               style={{marginLeft: 4}}
               onPress={onNavigateToEditList}
             />

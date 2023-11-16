@@ -18,6 +18,8 @@ export const useListDetail = () => {
   const listDetailState = useAppSelector(selectStateCollectionState);
   const {listId} = params as any;
 
+  const [loading, setLoading] = useState(false);
+
   const onNavigateToMovieDetail = (movieId: number) => {
     navigate(SCREEN.MAIN_HOME, {
       screen: SCREEN.MOVIE_DETAIL,
@@ -34,12 +36,15 @@ export const useListDetail = () => {
 
   const onDeleteList = async () => {
     try {
+      setLoading(true);
       await CollectionListService.deleteList(listId);
-      toast('success', 'Successfully create new list');
+      toast('success', 'Successfully delete list');
       dispatch(getCollectionListAsync());
       navigate(SCREEN.LIST);
     } catch (err) {
+      toast('error', 'Failed delete list');
     } finally {
+      setLoading(false);
     }
   };
 
@@ -50,6 +55,7 @@ export const useListDetail = () => {
   return {
     listDetail,
     loading: listDetailState === 'loading',
+    actionLoading: loading,
     onDeleteList,
     onNavigateToEditList,
     onNavigateToMovieDetail,
