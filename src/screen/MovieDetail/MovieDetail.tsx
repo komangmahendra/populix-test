@@ -1,30 +1,37 @@
 import React from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+
+// hooks
 import {useMovieDetail} from './useMovieDetail';
+
+// constant
 import {IMAGE_BASE_URL_W500} from '../../constant/url';
-import {useDimension} from '../../utils/useDimension';
+
+// component
 import {Layout} from '../../elements/Layout';
 import {HeaderWrapper} from '../../components/HeaderWrapper';
 import {Label} from '../../elements/Label';
-import {convertTimeToHoursFormat} from '../../utils/convertTimeToHoursFormat';
 import {TopBar} from '../../components/TopBar';
 import Button from '../../elements/Button';
 
+// utils
+import {getDimension} from '../../utils/getDimension';
+import {convertTimeToHoursFormat} from '../../utils/convertTimeToHoursFormat';
+
 export const MovieDetail = () => {
-  const {width} = useDimension();
   const {movieDetail, onNavigateToList} = useMovieDetail();
   const movieTime = convertTimeToHoursFormat(movieDetail?.runtime || 0);
 
   return (
     <>
-      <View style={{padding: 8, marginTop: 10, paddingBottom: -30}}>
+      <View style={styles.headerContainer}>
         <TopBar
           actionBar={<Button title="Add to list" onPress={onNavigateToList} />}
         />
       </View>
-      <ScrollView style={{paddingBottom: 100}}>
+      <ScrollView style={styles.container}>
         <Image
-          style={{resizeMode: 'cover', width: width, height: 300}}
+          style={styles.imageCover}
           source={{uri: `${IMAGE_BASE_URL_W500}/${movieDetail?.backdrop_path}`}}
         />
 
@@ -41,3 +48,19 @@ export const MovieDetail = () => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    padding: 8,
+    marginTop: 10,
+    paddingBottom: -30,
+  },
+  container: {
+    paddingBottom: 100,
+  },
+  imageCover: {
+    resizeMode: 'cover',
+    width: getDimension().width,
+    height: 300,
+  },
+});

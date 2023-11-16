@@ -22,8 +22,8 @@ export const useListForm = () => {
   const {listId} = params as any;
 
   const [listForm, setListForm] = useState({
-    name: listDetail?.name || '',
-    description: listDetail?.description || '',
+    name: '',
+    description: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -63,6 +63,10 @@ export const useListForm = () => {
   useEffect(() => {
     if (listId) {
       dispatch(getCollectionByIdAsync(listId));
+      setListForm({
+        name: listDetail?.name || '',
+        description: listDetail?.description || '',
+      });
     }
   }, []);
 
