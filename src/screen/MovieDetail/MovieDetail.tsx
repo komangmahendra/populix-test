@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Image, ScrollView, Text, View} from 'react-native';
+import {Image, ScrollView, Text, View} from 'react-native';
 import {useMovieDetail} from './useMovieDetail';
 import {IMAGE_BASE_URL_W500} from '../../constant/url';
 import {useDimension} from '../../utils/useDimension';
