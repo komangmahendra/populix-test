@@ -4,6 +4,7 @@ import {
   getCollectionByIdAsync,
   getCollectionListAsync,
   selectCollectionDetail,
+  selectStateCollectionState,
 } from '../../store/collectionList/collectionList';
 import {SCREEN} from '../../types/screen';
 import {useNavigation} from '../../utils/useNavigation';
@@ -14,9 +15,8 @@ export const useListDetail = () => {
   const dispatch = useAppDispatch();
   const {navigate, params = {}} = useNavigation();
   const listDetail = useAppSelector(selectCollectionDetail);
+  const listDetailState = useAppSelector(selectStateCollectionState);
   const {listId} = params as any;
-
-  const [loading, setLoading] = useState(false);
 
   const onNavigateToMovieDetail = (movieId: number) => {
     navigate(SCREEN.MAIN_HOME, {
@@ -49,7 +49,7 @@ export const useListDetail = () => {
 
   return {
     listDetail,
-    loading,
+    loading: listDetailState === 'loading',
     onDeleteList,
     onNavigateToEditList,
     onNavigateToMovieDetail,

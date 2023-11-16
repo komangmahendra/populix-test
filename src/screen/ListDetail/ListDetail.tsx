@@ -12,6 +12,7 @@ import {HeaderWrapper} from '../../components/HeaderWrapper';
 import {Placeholder} from '../../components/Placeholder';
 import {TopBar} from '../../components/TopBar';
 import Button from '../../elements/Button';
+import {Loading} from '../../elements/Loading';
 
 export const ListDetail = () => {
   const {
@@ -21,6 +22,8 @@ export const ListDetail = () => {
     onDeleteList,
     onNavigateToEditList,
   } = useListDetail();
+
+  console.log(loading);
 
   return (
     <Layout>
@@ -54,42 +57,46 @@ export const ListDetail = () => {
         }
       />
 
-      <FlatList
-        ListHeaderComponent={
-          <>
-            <HeaderWrapper>
-              <Label size="header">{listDetail?.name}</Label>
-              <Text>{listDetail?.description}</Text>
-            </HeaderWrapper>
-            <Label size="lg">Movie list</Label>
-          </>
-        }
-        ListEmptyComponent={
-          <Placeholder>
-            <Label size="md">Data movie list is empty</Label>
-          </Placeholder>
-        }
-        data={listDetail?.results || []}
-        renderItem={movie => (
-          <CardRowItem
-            imageUri={movie.item.poster_path}
-            onPress={() => onNavigateToMovieDetail(movie.item.id)}
-            content={
-              <>
-                <Label size="md" numberOfLines={1} ellipsizeMode="tail">
-                  {movie.item.title}
-                </Label>
-                <Text
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  style={{color: '#FF9209'}}>
-                  Rating {movie.item.vote_average}
-                </Text>
-              </>
-            }
-          />
-        )}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          ListHeaderComponent={
+            <>
+              <HeaderWrapper>
+                <Label size="header">{listDetail?.name}</Label>
+                <Text>{listDetail?.description}</Text>
+              </HeaderWrapper>
+              <Label size="lg">Movie list</Label>
+            </>
+          }
+          ListEmptyComponent={
+            <Placeholder>
+              <Label size="md">Data movie list is empty</Label>
+            </Placeholder>
+          }
+          data={listDetail?.results || []}
+          renderItem={movie => (
+            <CardRowItem
+              imageUri={movie.item.poster_path}
+              onPress={() => onNavigateToMovieDetail(movie.item.id)}
+              content={
+                <>
+                  <Label size="md" numberOfLines={1} ellipsizeMode="tail">
+                    {movie.item.title}
+                  </Label>
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={{color: '#FF9209'}}>
+                    Rating {movie.item.vote_average}
+                  </Text>
+                </>
+              }
+            />
+          )}
+        />
+      )}
     </Layout>
   );
 };

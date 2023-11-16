@@ -76,7 +76,7 @@ export const selectCollectionList = (state: RootState) =>
   state.collectionList.collectionList;
 export const selectCollectionDetail = (state: RootState) =>
   state.collectionList.listDetail;
-export const selectStateCollectionList = (state: RootState) =>
+export const selectStateCollectionState = (state: RootState) =>
   state.collectionList.status;
 
 export default collectionListSlice.reducer;

@@ -17,9 +17,10 @@ import Button from '../../elements/Button';
 // utils
 import {getDimension} from '../../utils/getDimension';
 import {convertTimeToHoursFormat} from '../../utils/convertTimeToHoursFormat';
+import {Loading} from '../../elements/Loading';
 
 export const MovieDetail = () => {
-  const {movieDetail, onNavigateToList} = useMovieDetail();
+  const {movieDetail, loading, onNavigateToList} = useMovieDetail();
   const movieTime = convertTimeToHoursFormat(movieDetail?.runtime || 0);
 
   return (
@@ -30,20 +31,28 @@ export const MovieDetail = () => {
         />
       </View>
       <ScrollView style={styles.container}>
-        <Image
-          style={styles.imageCover}
-          source={{uri: `${IMAGE_BASE_URL_W500}/${movieDetail?.backdrop_path}`}}
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Image
+              style={styles.imageCover}
+              source={{
+                uri: `${IMAGE_BASE_URL_W500}/${movieDetail?.backdrop_path}`,
+              }}
+            />
 
-        <Layout>
-          <HeaderWrapper>
-            <Label size="xl">{movieDetail?.title}</Label>
-            <Label size="md">
-              {movieTime.h}.{movieTime.m} hours
-            </Label>
-          </HeaderWrapper>
-          <Text>{movieDetail?.overview}</Text>
-        </Layout>
+            <Layout>
+              <HeaderWrapper>
+                <Label size="xl">{movieDetail?.title}</Label>
+                <Label size="md">
+                  {movieTime.h}.{movieTime.m} hours
+                </Label>
+              </HeaderWrapper>
+              <Text>{movieDetail?.overview}</Text>
+            </Layout>
+          </>
+        )}
       </ScrollView>
     </>
   );
