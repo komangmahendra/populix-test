@@ -1,5 +1,5 @@
+import React, {ReactNode} from 'react';
 import {useTheme} from '@react-navigation/native';
-import {ReactNode} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 export const Placeholder = ({children}: {children: ReactNode}) => {

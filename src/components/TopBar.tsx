@@ -17,6 +17,7 @@ export const TopBar = ({showBackButton, actionBar, ...props}: TopBarProps) => {
     <View style={[props, styles.container]}>
       {showBackButton || showBackButton === undefined ? (
         <TouchableOpacity
+          testID="topbar-back-button"
           onPress={() => goBack()}
           style={[{backgroundColor: theme.colors.border}, styles.button]}>
           <Icon name="arrowleft" size={18} />

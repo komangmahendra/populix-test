@@ -13,14 +13,19 @@ import {IMAGE_BASE_URL} from '../constant/url';
 export const CardRowItem = ({
   imageUri,
   content,
+  testID,
   onPress,
 }: {
   imageUri: string;
   content?: ReactNode;
+  testID?: string;
   onPress: () => void;
 }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => onPress()}>
+    <TouchableOpacity
+      testID={testID}
+      style={styles.container}
+      onPress={() => onPress()}>
       <Image
         style={styles.imgContainer}
         source={{
@@ -41,6 +46,8 @@ const styles = StyleSheet.create({
   content: {
     marginLeft: 10,
     justifyContent: 'center',
+    // calculate max content width =>
+    // total width screen - margin left content - padding layout
     maxWidth: Dimensions.get('window').width - 50 - 10 - 10,
   },
   imgContainer: {
