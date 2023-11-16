@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test label Should match with snapshot when size is Xtra large 1`] = `
+<Text
+  style={
+    [
+      undefined,
+      {
+        "fontSize": 32,
+        "fontWeight": "800",
+        "marginBottom": 2,
+      },
+    ]
+  }
+>
+  Xtra large
+</Text>
+`;
+
+exports[`Test label Should match with snapshot when size is header 1`] = `
+<Text
+  style={
+    [
+      undefined,
+      {
+        "fontSize": 40,
+        "fontWeight": "800",
+        "marginBottom": 2,
+      },
+    ]
+  }
+>
+  Header
+</Text>
+`;
+
+exports[`Test label Should match with snapshot when size is larger 1`] = `
+<Text
+  style={
+    [
+      undefined,
+      {
+        "fontSize": 18,
+        "fontWeight": "600",
+        "marginBottom": 2,
+      },
+    ]
+  }
+>
+  Large
+</Text>
+`;
+
+exports[`Test label Should match with snapshot when size is md 1`] = `
+<Text
+  style={
+    [
+      undefined,
+      {
+        "fontSize": 14,
+        "fontWeight": "600",
+        "marginBottom": 2,
+      },
+    ]
+  }
+>
+  Medium
+</Text>
+`;
+
+exports[`Test label Should match with snapshot when size is sm 1`] = `
+<Text
+  style={
+    [
+      undefined,
+      {
+        "fontSize": 10,
+        "fontWeight": "600",
+        "marginBottom": 2,
+      },
+    ]
+  }
+>
+  Small
+</Text>
+`;
