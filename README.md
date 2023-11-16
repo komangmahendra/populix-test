@@ -35,3 +35,5 @@ npm run test
 # OR run unit test with coverage
 yarn run test:coverage
 ```
+
+_Note: saat ini tidak semua unit test, hanya diambil sampel beberapa dari komponen, screen, hooks, redux._
