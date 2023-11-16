@@ -21,6 +21,7 @@ export const ListDetail = () => {
     onDeleteList,
     onNavigateToEditList,
   } = useListDetail();
+
   return (
     <Layout>
       <TopBar
