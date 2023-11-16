@@ -8,7 +8,7 @@ Pada halaman detail movie user bisa menambahkan movie tersebut ke dalam salah sa
 
 Pada halaman list , user bisa melalukan penambahan list item baru dengan properi 'name' dan 'description', di list juga bisa diakses list detailnya, untuk melakukan update ataupun delete dari list item.
 
-Untuk saat ini setelah beberapa kali mencoba, sepertinya pada list detail ada masalah pada endpoint, jadi setelah list detail di update, list detail sendiri tidak terupdate, walaupun di list sudah terupdate.
+_Note: Untuk saat ini setelah beberapa kali mencoba, sepertinya pada list detail ada masalah pada endpoint, jadi setelah list detail di update, list detail sendiri tidak terupdate, walaupun di list sudah terupdate._
 
 ## Step 2: Menjalankan aplikasi
 
@@ -24,4 +24,14 @@ npm run ios
 yarn ios
 ```
 
-Note: selama pengerjaan test developer menggunakan simulator ios untuk pengembangan aplikasi, dikarenakan ada kendala saat akan menjalankan menggunakan Android.
+_Note: selama pengerjaan test developer menggunakan simulator ios untuk pengembangan aplikasi, dikarenakan ada kendala saat akan menjalankan menggunakan Android._
+
+### Unit test
+
+```bash
+# run unit test without coverage
+npm run test
+
+# OR run unit test with coverage
+yarn run test:coverage
+```
