@@ -10,7 +10,7 @@ Pada halaman list, user bisa melalukan penambahan list item baru dengan properi 
 
 _Note: Untuk saat ini setelah beberapa kali mencoba, sepertinya pada list detail ada masalah pada endpoint, jadi setelah list detail di update, list detail sendiri tidak terupdate, walaupun di list sudah terupdate._
 
-## Step 2: Menjalankan aplikasi
+## Menjalankan aplikasi
 
 Pastikan environmen sudah siap, kemudian jalankan perintah berikut untuk menjalankan pada simulator ios
 
