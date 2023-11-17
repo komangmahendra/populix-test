@@ -14,7 +14,7 @@ _Note: Untuk saat ini setelah beberapa kali mencoba, sepertinya pada list detail
 
 Pastikan environmen sudah siap, kemudian jalankan perintah berikut untuk menjalankan pada simulator ios
 
-### For iOS
+### Untuk iOS
 
 ```bash
 # using npm
