@@ -36,4 +36,4 @@ npm run test
 yarn run test:coverage
 ```
 
-_Note: saat ini tidak semua unit test, hanya diambil sampel beberapa dari komponen, screen, hooks, redux._
+_Note: saat ini tidak semua di unit test, hanya diambil sampel beberapa dari komponen, screen, hooks, redux._
